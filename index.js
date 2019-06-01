@@ -199,7 +199,9 @@ const logic = (req, res) => {
         payload += decoder.end(); // The request has finished, finish up
 
         // Send the request to the correct handler, if non is available/found send to ohnoes
-        const handlerReq = router[trimPath] || handlers.ohnoes; // if stat code is number, leave it as it is and if it isnt a number then define stat code as 200
+        var handlerReq = router[trimPath] || handlers.ohnoes; // if stat code is number, leave it as it is and if it isnt a number then define stat code as 200
+
+        handlerReq = trimPath.indexOf('p/') > -1 ? handlers.assets : handlerReq
 
         // Construct the object to send to the handler
         const sPayload = etc.safePJS(payload);//make sure that the payload wont cause any errors/issues, if it does return an empty object
@@ -245,7 +247,7 @@ const logic = (req, res) => {
             log.request([
                 'Responding to request:',
                 `  Code: ${statCode}`,
-                `  Payload: ${payloadPrint}`,
+                `  Payload: disabled`,//${payloadPrint}
                 `  Type: ${objTyp}`,
                 `  Time: ${rdate}`
             ].join('\n'));
@@ -269,7 +271,8 @@ var router = {
     "ping": handlers.ping,
     "api/user": handlers.user,
     "api/auth": handlers.accesstoken,
-    "favicon.ico": handlers.favicon
+    "favicon.ico": handlers.favicon,
+    'p': handlers.assets
 };
 
 module.exports = httpServer;

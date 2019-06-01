@@ -31,7 +31,10 @@ const environments = {
         tokenTime: 60, //Time (in minutes) until a token expires
         clearTokens: true, //Remove old tokens on boot
         timeZoneHours: 1,//Hours to add to token and API timing to resolve timezone issues
-        aesEnabled: false //Turns Encryption on for user data
+        aesEnabled: false, //Turns Encryption on for user data
+        globals: {
+            base: "http://localhost:8080"
+        }
     },
 
     // Default production configuration.
