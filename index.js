@@ -51,7 +51,7 @@ const http = require('http'),
 
 
 try {
-    console.info(`\NJSAPIPROJ-${fs.readFileSync('.git/refs/heads/master').toString('utf-8')}\nUsing mode: ${config.env}\nhttps://github.com/dudeisbrendan03/RESTful-api\n v0.2.239\n`);
+    console.info(`\nUBERSPEAKSAUTHPROJ-${fs.readFileSync('.git/refs/heads/master').toString('utf-8')}\nUsing mode: ${config.env}\nhttps://github.com/dudeisbrendan03/RESTful-api\n v0.2.239\n`);
 } catch (e) {
     console.error('Unknown version');
 }
@@ -259,13 +259,16 @@ const logic = (req, res) => {
 
 //A cool router
 var router = {
-    "up": handlers.up,
-    "sample": handlers.sample,
-    "best": handlers.best,
-    "demosite": handlers.demosite,
+    "" : handlers.index,//base site
+    "user/create" : handlers.web.userCreate,//create
+    "user/delete" : handlers.web.userDelete,//delete
+    "user/update" : handlers.web.userUpdate,//update
+    "user/session/create" : handlers.web.sessionCreate,//login
+    "user/session/purge" : handlers.web.sessionDelete,//logout
+    "dashboard" : handlers.web.dash,
     "ping": handlers.ping,
-    "user": handlers.user,
-    "auth": handlers.accesstoken,
+    "api/user": handlers.user,
+    "api/auth": handlers.accesstoken,
     "favicon.ico": handlers.favicon
 };
 
