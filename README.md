@@ -1,10 +1,8 @@
-*Currently pretty inefficient/insecure*
+*This instance has been modified to suit the needs of a specific web application.*
 
-v0.2.239
+Original RESTful version: v0.2.239 (this is the version of RESTful this fork came from)
 
-[Get the docs](https://restfulapi13.docs.apiary.io/#)
-
-[Check DevOps](https://dev.azure.com/TPCOfficial/RESTful-api/_workitems/recentlyupdated/)
+[Check out RESTful API at](https://github.com/dudeisbrendan03/RESTful-api)
 
 # Another RESTful API
 
