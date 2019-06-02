@@ -1,3 +1,8 @@
+.cta {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
 .copyright {
     text-align: center
 }
@@ -11,27 +16,69 @@
 .header ul li.loggedIn{
     display: none;
   }
-  
+
+.header span a.loggedIn{
+  display: none;
+}
+
+.header div a.loggedIn{
+  display: none;
+}
+
   body.loggedIn .header ul li.loggedIn{
     display: inline-block;
   }
+
+  body.loggedIn .header span a.loggedIn{
+    display: inline-block;
+  }
   
+  body.loggedIn .header div a.loggedIn{
+    display: inline-block;
+  }
+
+  body.loggedIn .header div a.loggedOut{
+    display: none;
+  }
+
   body.loggedIn .header ul li.loggedOut{
     display: none;
   }
 
+  body.loggedIn .header ul a.loggedOut{
+    display: none;
+  }
+
+  body.loggedIn .header span a.loggedOut{
+    display: none;
+  }
+
 .formError{
-display: none;
-background-color: #c83737;
-font-style: italic;
-color: #fff;
-padding: 10px 15px;
-border-radius: 5px;
-margin: 0 0 15px 0;
-text-align: center;
-border-color: #d87070;
-border-width: 2px;
-border-style: solid;
+  display: none;
+  background-color: #c83737;
+  font-style: italic;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 0 0 15px 0;
+  text-align: center;
+  border-color: #d87070;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.formSuccess{
+  display: none;
+  background-color: #217844;
+  font-style: italic;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 0 0 15px 0;
+  text-align: center;
+  border-color: #35c06d;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .highlight-clean {
@@ -89,7 +136,7 @@ border-style: solid;
   }
   
   .highlight-clean .buttons .btn-primary {
-    background-color:#055ada;
+    background-color:#494949;
     color:#fff;
   }
   

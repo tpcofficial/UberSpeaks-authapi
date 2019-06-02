@@ -212,9 +212,9 @@ const logic = (req, res) => {
             'Request received:',
             `  Path: '${trimPath}'`,
             `  Method: ${method.toUpperCase()}`,
-            `  Query: ${JSON.stringify(queryStringObj)}`,
+            `  Query: disabled`,
             `  Headers: ${JSON.stringify(headers)}`,
-            `  Payload: ${payload}`,
+            `  Payload: disabled`,
             `  Time: ${new Date()}`
         ].join('\n'));
 

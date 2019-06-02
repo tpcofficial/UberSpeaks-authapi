@@ -56,9 +56,9 @@ app.client.request = function(headers, path, method, query, payload, callback) {
 
     if (app.config.session) {
         if (method === 'POST' || method === 'PUT') {
-            payload.token = app.config.session;
+            payload.token = app.config.session.token;
         } else {
-            query.token = app.config.session;
+            query.token = app.config.session.token;
         }
     }
 
@@ -150,22 +150,17 @@ app.bindLogoutButton = function(){
           var method = this.method.toUpperCase();
   
           // Hide the error message (if it's currently shown due to a previous error)
-          try {
-            document.querySelector("#"+formId+" .formError").style.display = 'none';
-          } catch (e) {
-            console.log('no need to clear error')
-          }
+
+          document.querySelector("#"+formId+" .formError").style.display = 'none';
+
+          console.log('no need to clear error')
+          
   
           // Hide the success message (if it's currently shown due to a previous error)
-          try {
-            if (document.querySelector("#"+formId+" .formSuccess")) {
-                document.querySelector("#"+formId+" .formSuccess").style.display = 'none';
-            }
-          } catch (e) {
-            console.log('no need to clear success')
+          if (document.querySelector("#"+formId+" .formSuccess")) {
+              document.querySelector("#"+formId+" .formSuccess").style.display = 'none';
           }
-  
-  
+          
           // Turn the inputs into a payload
           var payload = {};
           var elements = this.elements;
@@ -209,8 +204,11 @@ app.bindLogoutButton = function(){
           // Call the API
           app.client.request(undefined,path,method,queryStringObject,payload,function(statusCode,responsePayload){
             // Display an error on the form if needed
-            if(statusCode !== 200){
-  
+            if(statusCode === 200 || statusCode === 204){
+              // If successful, send to form response processor
+              app.formResponseProcessor(formId,payload,responsePayload);
+              
+            } else {
               if(statusCode == 403){
                 // log the user out
                 app.logUserOut();
@@ -226,11 +224,7 @@ app.bindLogoutButton = function(){
                 // Show (unhide) the form error field on the form
                 document.querySelector("#"+formId+" .formError").style.display = 'block';
               }
-            } else {
-              // If successful, send to form response processor
-              app.formResponseProcessor(formId,payload,responsePayload);
             }
-  
           });
         });
       }
@@ -272,7 +266,7 @@ app.bindLogoutButton = function(){
     }
   
     // If forms saved successfully and they have success messages, show them
-    var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1'];
+    var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2'];
     if(formsWithSuccessMessages.indexOf(formId) > -1){
       document.querySelector("#"+formId+" .formSuccess").style.display = 'block';
     }
@@ -325,6 +319,7 @@ app.bindLogoutButton = function(){
     }
   };
   
+
   // Set the session token in the app.config object as well as localstorage
   app.setSessionToken = function(token){
     app.config.session = token;
@@ -349,7 +344,7 @@ app.bindLogoutButton = function(){
         // Display an error on the form if needed
         if(statusCode == 200){
           // Get the new token details
-          var queryStringObject = {'id' : currentToken.token};
+          var queryStringObject = {'token' : currentToken.token};
           app.client.request(undefined,'api/auth','GET',queryStringObject,undefined,function(statusCode,responsePayload){
             // Display an error on the form if needed
             if(statusCode == 200){
@@ -378,18 +373,8 @@ app.bindLogoutButton = function(){
     var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
   
     // Logic for account settings page
-    if(primaryClass == 'accountEdit'){
+    if(primaryClass == 'userUpdate'){
       app.loadAccountEditPage();
-    }
-  
-    // Logic for dashboard page
-    if(primaryClass == 'checksList'){
-      app.loadChecksListPage();
-    }
-  
-    // Logic for check details page
-    if(primaryClass == 'checksEdit'){
-      app.loadChecksEditPage();
     }
   };
   
@@ -399,19 +384,23 @@ app.bindLogoutButton = function(){
     var email = typeof(app.config.session.email) == 'string' ? app.config.session.email : false;
     if(email){
       // Fetch the user data
-      var queryStringObject = {email};
-      app.client.request(undefined,'api/user','GET',queryStringObject,undefined,function(statusCode,responsePayload){
+      var query = {email,'token':app.config.session.token};
+      app.client.request(undefined,'api/user','GET',query,undefined,function(statusCode,responsePayload){
         if(statusCode == 200){
           // Put the data into the forms as values where needed
-          document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
-          document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
-          document.querySelector("#accountEdit1 .displayemailInput").value = responsePayload.email;
+          document.querySelector("#accountEdit1 .firstname").value = responsePayload.fName;
+          document.querySelector("#accountEdit1 .lastname").value = responsePayload.lName;
+          document.querySelector("#accountEdit1 .email").value = responsePayload.email;
+          document.querySelector("#accountEdit1 .mobile").value = responsePayload.mobile;
+          document.querySelector("#accountEdit2 .email").value = responsePayload.email;
+          document.querySelector("#accountEdit3 .token").value = app.config.session.token;
+          document.querySelector("#accountEdit3 .email").value = responsePayload.email;
   
           // Put the hidden email field into both forms
-          var hiddenEmailInputs = document.querySelectorAll("input.hiddenEmailNumberInput");
+          /*var hiddenEmailInputs = document.querySelectorAll("input.hiddenEmailNumberInput");
           for(var i = 0; i < hiddenEmailInputs.length; i++){
               hiddenEmailInputs[i].value = responsePayload.email;
-          }
+          }*/
   
         } else {
           // If the request comes back as something other than 200, log the user our (on the assumption that the api is temporarily down or the users token is bad)
@@ -424,10 +413,6 @@ app.bindLogoutButton = function(){
   };
 
 
-
-
-
-
 // Loop to renew token often
 app.tokenRenewalLoop = function(){
     setInterval(function(){
@@ -436,7 +421,7 @@ app.tokenRenewalLoop = function(){
           console.log("Automatically renewed session at: "+Date.now());
         }
       });
-    },1000 * 60);
+    },1000 * 60 * 60);
   };
   
   // Init (bootstrapping)

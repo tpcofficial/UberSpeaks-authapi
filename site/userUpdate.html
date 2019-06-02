@@ -1,0 +1,42 @@
+        <!--Login resources-->
+        <link rel="stylesheet" type="text/css" href="p/css/login.css">
+
+        <div class="login-clean">
+            <form id="accountEdit1" action="api/user" method="put">
+                <div class="formError"></div>
+                <div class="formSuccess">Your changes have been saved.</div>
+                <input type="hidden" name="_method" value="PUT" disabled/>
+                <h2 class="nsr">Update user</h2>
+                <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+                <div class="form-group"><input type="email" name="email" placeholder="Email" class="form-control email" disabled/></div>
+                <div class="form-group"><input type="text" name="mobile" placeholder="Phone number" class="form-control mobile" /></div>
+                <div class="form-group"><input type="text" name="fName" placeholder="First name" class="form-control firstname" /></div>
+                <div class="form-group"><input type="text" name="lName" placeholder="Last name" class="form-control lastname" /></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Update user</button></div>
+                <p><br>Must update at least one value, you are NOT required to change every detail. Anything that you don't want changed should be left blank.</p>
+            </form>
+            <br>
+            <form id="accountEdit2" action="api/user" method="PUT">
+                <div class="formError"></div>
+                <div class="formSuccess">Your changes have been saved.</div>
+                <input type="hidden" name="_method" value="PUT" disabled/>
+                <h2 class="nsr">Update password</h2>
+                <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+                <input class="hiddenEmailNumberInput email" type="hidden" name="email" />
+                <div class="form-group"><input type="password" name="pass" placeholder="Password" class="form-control" /></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Update user</button></div>
+                <p><br>Password resets may only be done by contacting <a href="mailto:hey@thatspretty.cool">hey@thatspretty.cool</a></p>
+            </form>
+            <br>
+            <form id="accountEdit3" action="/api/user" method="DELETE">
+                <h2 class="nsr">Delete Your Account</h2>
+                <input type="hidden" name="_method" value="DELETE" disabled/>
+                <div class="formError"></div>
+                <div class="warning">Warning: This action cannot be undone. Dont click this button on accident!</div>
+                <input class="hiddenEmailNumberInput email" type="hidden" name="email" />
+                <input class="hiddenTokenNumberInput token" type="hidden" name="token" />
+                <div style="padding-top: 18px; text-align: center;" class="inputWrapper">
+                    <button type="submit" class="cta btn btn-block btn-danger">Delete Account</button>
+                </div>
+            </form>
+        </div>

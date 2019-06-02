@@ -3,6 +3,10 @@
         <title>{head.title} | UberSpeak Dashboard</title>
         <base href="{global.base}"/>
 
+        <!--App resources-->
+        <script type="text/javascript" charset="utf-8" src="p/js/app.js"></script>
+        <link rel="stylesheet" type="text/css" href="p/css/app.css">
+        
         <!--Meta-->
         <meta charset="utf-8">
         <meta name="description" content="{head.description}">
@@ -36,8 +40,8 @@
                                 id="navcol-1">
                                 <ul class="nav navbar-nav mr-auto">
                                     <li role="presentation" class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                                    <li role="presentation" class="nav-item loggedOut"><a href="dashboard/" class="nav-link">Dashboard</a></li>
-                                    <li role="presentation" class="nav-item loggedOut"><a href="user/update/" class="nav-link">Account settings</a></li>
+                                    <li role="presentation" class="nav-item loggedIn"><a href="dashboard/" class="nav-link">Dashboard</a></li>
+                                    <li role="presentation" class="nav-item loggedIn"><a href="user/update/" class="nav-link">Account settings</a></li>
                                 </ul>
                                 <span class="navbar-text actions">
                                     <a href="user/login" class="login loggedOut">Log In</a>
@@ -52,3 +56,4 @@
 
         <!--Site content-->
         <div class="content">
+        
