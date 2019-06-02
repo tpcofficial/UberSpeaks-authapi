@@ -1,0 +1,22 @@
+        <!--App resources-->
+        <script type="text/javascript" charset="utf-8" src="p/js/app.js"></script>
+        <link rel="stylesheet" type="text/css" href="p/css/app.css">
+        
+        <!--Login resources-->
+        <link rel="stylesheet" type="text/css" href="p/css/login.css">
+
+        <div class="login-clean">
+            <form id="accountCreate" method="post" action="api/user">
+                <div class="formError"></div>
+                <div clas="formSuccess"></div>
+                <h2 class="sr-only">Login Form</h2>
+                <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+                <div class="form-group"><input type="email" name="email" placeholder="Email" class="form-control" /></div>
+                <div class="form-group"><input type="password" name="pass" placeholder="Password" class="form-control" /></div>
+                <div class="form-group"><input type="text" name="mobile" placeholder="Phone number" class="form-control" /></div>
+                <div class="form-group"><p>Terms of service</p><input class="checkbox" type="checkbox" name="tos" placeholder="Terms of Service" class="form-control" /></div>
+                <div class="form-group"><input type="text" name="fName" placeholder="First name" class="form-control" /></div>
+                <div class="form-group"><input type="text" name="lName" placeholder="Last name" class="form-control" /></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div>
+            </form>
+        </div>

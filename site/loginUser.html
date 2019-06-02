@@ -1,0 +1,18 @@
+        <!--App resources-->
+        <script type="text/javascript" charset="utf-8" src="p/js/app.js"></script>
+        <link rel="stylesheet" type="text/css" href="p/css/app.css">
+        
+        <!--Login resources-->
+        <link rel="stylesheet" type="text/css" href="p/css/login.css">
+
+        <div class="login-clean">
+            <form id="sessionCreate" method="post" action="api/auth">
+                <div class="formError"></div>
+                <div clas="formSuccess"></div>
+                <h2 class="sr-only">Login Form</h2>
+                <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+                <div class="form-group"><input type="email" name="email" placeholder="Email" class="form-control" /></div>
+                <div class="form-group"><input type="password" name="pass" placeholder="Password" class="form-control" /></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+            </form>
+        </div>

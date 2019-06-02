@@ -267,6 +267,7 @@ var router = {
     "user/update" : handlers.web.userUpdate,//update
     "user/session/create" : handlers.web.sessionCreate,//login
     "user/session/purge" : handlers.web.sessionDelete,//logout
+    "user/login" : handlers.web.userLogin,//login page
     "dashboard" : handlers.web.dash,
     "ping": handlers.ping,
     "api/user": handlers.user,

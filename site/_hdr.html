@@ -10,21 +10,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <!--Boostrap because I'm lazy and doing this for free-->
-        <link rel="stylesheet" type="text/css" href="p/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="p/nav.css">
-        <link rel="stylesheet" type="text/css" href="p/main.css">
+        <link rel="stylesheet" type="text/css" href="p/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="p/css/nav.css">
+        <link rel="stylesheet" type="text/css" href="p/css/main.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
-        <script src="/p/theme.js"></script>
-        <script src="/p/jquery-3.2.1.min.js"></script>
-            <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
-
-        <!--App resources-->
-        <script type="text/javascript" charset="utf-8" src="p/app.js"></script>
-        <link rel="stylesheet" type="text/css" href="p/app.css">
+        <script src="/p/js/theme.js"></script>
+        <script src="/p/js/jquery-3.2.1.min.js"></script>
     </head>
 
     <body class="{body.class}">
@@ -43,12 +35,13 @@
                             <div class="collapse navbar-collapse"
                                 id="navcol-1">
                                 <ul class="nav navbar-nav mr-auto">
-                                    <li role="presentation" class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+                                    <li role="presentation" class="nav-item"><a href="#" class="nav-link">Home</a></li>
                                     <li role="presentation" class="nav-item loggedOut"><a href="dashboard/" class="nav-link">Dashboard</a></li>
                                     <li role="presentation" class="nav-item loggedOut"><a href="user/update/" class="nav-link">Account settings</a></li>
                                 </ul>
                                 <span class="navbar-text actions">
-                                    <a href="#" class="login loggedOut">Log In</a>
+                                    <a href="user/login" class="login loggedOut">Log In</a>
+                                    <a style="padding-right: 8px;" id="logoutButton" href="#" class="logout loggedIn">Log out</a>
                                     <a class="btn btn-light action-button loggedOut" role="button" href="user/create">Sign Up</a>
                                 </span>
                             </div>
